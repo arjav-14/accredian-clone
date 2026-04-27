@@ -38,8 +38,8 @@ export default function Navbar({ onEnquire }) {
   }, []);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white shadow-md py-6 px-6 lg:px-14">
-      <div className="max-w-[85rem] mx-auto flex justify-between items-center">
+    <nav className="fixed top-0 w-full z-50 bg-white shadow-sm py-6 px-6 lg:px-14">
+      <div className="max-w-[85rem] mx-auto flex justify-between items-center relative">
         <div className="flex-shrink-0">
           <img 
             src="https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/logo.webp" 
@@ -48,7 +48,7 @@ export default function Navbar({ onEnquire }) {
           />
         </div>
         
-        {/* Desktop Links (Hidden until LG 1024px) */}
+        {/* Desktop Links (Hidden until LG) */}
         <ul className="hidden lg:flex items-center space-x-6 xl:space-x-8">
           {navLinks.map((link) => (
             <li 
@@ -69,11 +69,11 @@ export default function Navbar({ onEnquire }) {
           ))}
         </ul>
 
-        {/* Mobile Menu Trigger (Visible until LG) */}
+        {/* Mobile Menu Trigger */}
         <div className="lg:hidden flex items-center">
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 focus:outline-none"
+            className="p-2 focus:outline-none z-[70]"
           >
             <svg 
               className="w-8 h-8 text-black"
@@ -84,38 +84,27 @@ export default function Navbar({ onEnquire }) {
               {isMobileMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 6h16M4 12h16m-7 6h7"></path>
               )}
             </svg>
           </button>
           
-          <div className={`${isMobileMenuOpen ? "flex" : "hidden"} fixed top-[88px] left-0 right-0 bg-white shadow-2xl p-6 border-t border-gray-100 flex-col space-y-4 animate-in slide-in-from-top-5 duration-300`}>
+          <div className={`${isMobileMenuOpen ? "flex" : "hidden"} absolute top-[88px] right-5 bg-white shadow-lg p-6 rounded-xl flex-col z-[60]`}>
             <ul className="flex flex-col space-y-4">
               {navLinks.map((link) => (
-                <li key={`nav-mobile-${link.id}`} className="text-[17px] font-circular font-bold">
+                <li key={`nav-mobile-${link.id}`} className="text-[16px] font-circular text-black cursor-pointer">
                   <Link 
                     href={link.href}
                     onClick={() => {
                        setIsMobileMenuOpen(false);
                        setActiveSection(link.id);
                     }}
-                    className={`block w-full py-2 ${activeSection === link.id ? "text-universal" : "text-black"}`}
+                    className={`${activeSection === link.id ? "text-universal font-semibold border-b-[2px] border-universal" : "text-black"}`}
                   >
                     {link.name}
                   </Link>
                 </li>
               ))}
-              <li className="pt-4">
-                <button 
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    onEnquire();
-                  }}
-                  className="w-full bg-universal text-white font-bold py-4 rounded-xl shadow-lg active:scale-[0.98] transition-all"
-                >
-                  Enquire Now
-                </button>
-              </li>
             </ul>
           </div>
         </div>
