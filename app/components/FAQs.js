@@ -50,18 +50,16 @@ export default function FAQs() {
 
   return (
     <div id="faqs" className="faqs w-full mt-20 sm:mt-32 flex flex-col items-center px-4 max-w-6xl mx-auto relative">
-      <div className="text-left w-full mb-16">
+      <div className="text-left md:text-center w-full mb-10 md:mb-16">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight font-circular">
           Frequently Asked <span className="text-universal">Questions</span>
         </h2>
       </div>
 
-
-
       <div className="w-full flex flex-col md:flex-row gap-8 lg:gap-16">
-
-        {/* Left Sidebar for Tabs */}
-        <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible w-full md:w-1/3 gap-4 pb-4 md:pb-0 scrollbar-hide">
+        
+        {/* Tabs: Horizontal Scroll on Mobile, Vertical Sidebar on Desktop */}
+        <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible w-full md:w-1/3 gap-4 pb-4 md:pb-0 scrollbar-hide snap-x">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -69,10 +67,11 @@ export default function FAQs() {
                 setActiveTab(tab.id);
                 setOpenIndex(0);
               }}
-              className={`whitespace-nowrap px-8 py-5 rounded-xl border text-sm font-bold transition-all duration-300 font-circular text-center w-full min-w-[200px] md:min-w-0 ${activeTab === tab.id
-                ? "bg-white text-universal border-gray-100 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] scale-[1.02] border-none"
-                : "bg-white text-gray-500 border-gray-200 hover:border-universal hover:text-universal"
-                }`}
+              className={`whitespace-nowrap px-6 md:px-8 py-3.5 md:py-5 rounded-xl border text-sm font-bold transition-all duration-300 font-circular text-center min-w-[180px] md:min-w-0 snap-center ${
+                activeTab === tab.id
+                  ? "bg-white text-universal border-gray-100 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] md:scale-[1.02] border-none"
+                  : "bg-white text-gray-400 border-gray-200 hover:border-universal hover:text-universal"
+              }`}
             >
               {tab.name}
             </button>
@@ -83,16 +82,17 @@ export default function FAQs() {
         <div className="w-full md:w-2/3 flex flex-col">
           <div className="space-y-4">
             {faqData[activeTab].map((item, idx) => (
-              <div
+              <div 
                 key={idx}
-                className="border-b border-gray-100 last:border-b-0 pb-4"
+                className="border-b border-gray-100 last:border-b-0 pb-2 md:pb-4"
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === idx ? -1 : idx)}
                   className="w-full flex justify-between items-start text-left py-4 group focus:outline-none"
                 >
-                  <span className={`text-[15px] sm:text-[17px] font-bold pr-8 transition-colors font-circular leading-snug ${openIndex === idx ? "text-universal" : "text-gray-800"
-                    }`}>
+                  <span className={`text-[15px] sm:text-[17px] font-bold pr-8 transition-colors font-circular leading-snug ${
+                    openIndex === idx ? "text-universal" : "text-gray-800"
+                  }`}>
                     {item.question}
                   </span>
                   <span className={`mt-1 transform transition-all duration-300 ${openIndex === idx ? "rotate-180 text-universal" : "text-gray-400 opacity-60"}`}>
@@ -101,9 +101,10 @@ export default function FAQs() {
                     </svg>
                   </span>
                 </button>
-                <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === idx ? "max-h-96 pb-4" : "max-h-0"
-                    }`}
+                <div 
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    openIndex === idx ? "max-h-96 pb-4" : "max-h-0"
+                  }`}
                 >
                   <p className="text-gray-600 text-sm sm:text-[15px] leading-relaxed font-circular font-medium">
                     {item.answer}
@@ -114,7 +115,7 @@ export default function FAQs() {
           </div>
 
           {/* Enquire Button Below Questions */}
-          <div className="mt-12 flex justify-center w-full">
+          <div className="mt-10 md:mt-12 flex justify-center w-full">
             <button className="bg-universal text-white font-bold py-3.5 px-12 rounded-xl shadow-lg hover:bg-blue-700 transition-all active:scale-[0.98] font-circular text-sm">
               Enquire Now
             </button>
