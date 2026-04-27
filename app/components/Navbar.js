@@ -21,7 +21,7 @@ export default function Navbar({ onEnquire }) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100; // offset for navbar
-
+      
       for (const link of navLinks) {
         const element = document.getElementById(link.id);
         if (element) {
@@ -38,70 +38,80 @@ export default function Navbar({ onEnquire }) {
   }, []);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white shadow-md py-6 px-6 md:px-14 ">
+    <nav className="fixed top-0 w-full z-50 bg-white shadow-md py-6 px-6 lg:px-14">
       <div className="max-w-[85rem] mx-auto flex justify-between items-center">
-        <img
-          src="https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/logo.webp"
-          alt="logo"
-          className="w-[124px] h-[32px]"
-        />
-
-        <ul className="hidden md:flex justify-end items-center flex-1 space-x-6 lg:space-x-8">
+        <div className="flex-shrink-0">
+          <img 
+            src="https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/logo.webp" 
+            alt="logo" 
+            className="w-[124px] h-[32px] object-contain"
+          />
+        </div>
+        
+        {/* Desktop Links (Hidden until LG 1024px) */}
+        <ul className="hidden lg:flex items-center space-x-6 xl:space-x-8">
           {navLinks.map((link) => (
-            <li
-              key={`nav-desktop-${link.id}`}
-              className={`text-[16px] font-circular font-normal cursor-pointer transition-all duration-300 ${activeSection === link.id
-                ? "text-universal font-semibold border-b-[3px] border-universal"
-                : "text-black hover:text-universal"
-                }`}
+            <li 
+              key={`nav-desktop-${link.id}`} 
+              className={`text-[15px] xl:text-[16px] font-circular font-semibold cursor-pointer transition-all duration-300 relative py-1 ${
+                activeSection === link.id 
+                  ? "text-universal" 
+                  : "text-black hover:text-universal"
+              }`}
             >
               <Link href={link.href} onClick={() => setActiveSection(link.id)}>
                 {link.name}
               </Link>
+              {activeSection === link.id && (
+                <span className="absolute bottom-0 left-0 w-full h-[3px] bg-universal rounded-full"></span>
+              )}
             </li>
           ))}
         </ul>
 
-        <div className="md:hidden flex items-center">
-          <svg
+        {/* Mobile Menu Trigger (Visible until LG) */}
+        <div className="lg:hidden flex items-center">
+          <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            stroke="currentColor"
-            fill="none"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            className="w-8 h-8 text-black cursor-pointer"
+            className="p-2 focus:outline-none"
           >
-            {isMobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
-            )}
-          </svg>
-
-          <div className={`${isMobileMenuOpen ? "flex" : "hidden"} fixed top-[88px] right-5 bg-white shadow-lg p-6 rounded-xl`}>
+            <svg 
+              className="w-8 h-8 text-black"
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+              )}
+            </svg>
+          </button>
+          
+          <div className={`${isMobileMenuOpen ? "flex" : "hidden"} fixed top-[88px] left-0 right-0 bg-white shadow-2xl p-6 border-t border-gray-100 flex-col space-y-4 animate-in slide-in-from-top-5 duration-300`}>
             <ul className="flex flex-col space-y-4">
               {navLinks.map((link) => (
-                <li key={`nav-mobile-${link.id}`} className="text-[16px] font-circular text-black cursor-pointer">
-                  <Link
+                <li key={`nav-mobile-${link.id}`} className="text-[17px] font-circular font-bold">
+                  <Link 
                     href={link.href}
                     onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      setActiveSection(link.id);
+                       setIsMobileMenuOpen(false);
+                       setActiveSection(link.id);
                     }}
-                    className={`${activeSection === link.id ? "text-universal font-semibold border-b-[2px] border-universal" : "text-black"}`}
+                    className={`block w-full py-2 ${activeSection === link.id ? "text-universal" : "text-black"}`}
                   >
                     {link.name}
                   </Link>
                 </li>
               ))}
-              <li className="pt-2">
-                <button
+              <li className="pt-4">
+                <button 
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     onEnquire();
                   }}
-                  className="w-full bg-universal text-white py-2 rounded-lg font-semibold"
+                  className="w-full bg-universal text-white font-bold py-4 rounded-xl shadow-lg active:scale-[0.98] transition-all"
                 >
                   Enquire Now
                 </button>
