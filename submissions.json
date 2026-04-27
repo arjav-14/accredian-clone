@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1777279759013,
+    "submittedAt": "2026-04-27T08:49:19.014Z",
+    "name": "Arjav Badjate",
+    "email": "arjavbadjate1709@gmail.com",
+    "phone": "123456789",
+    "company": "eferfev",
+    "domain": "Data Science",
+    "candidates": "2",
+    "mode": "hybrid",
+    "location": "Delhi"
+  },
+  {
+    "id": 1777279858257,
+    "submittedAt": "2026-04-27T08:50:58.257Z",
+    "name": "Arjav Badjate",
+    "email": "arjavbadjate1709@gmail.com",
+    "phone": "123456789",
+    "company": "eferfev",
+    "domain": "Product Management",
+    "candidates": "2",
+    "mode": "hybrid",
+    "location": "Delhi"
+  }
+]
