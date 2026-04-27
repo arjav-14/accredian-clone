@@ -96,7 +96,7 @@ export default function FAQs() {
                 onClick={() => scroll("left")}
                 className="w-8 h-8 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center ml-0 active:scale-90 transition-transform"
               >
-                <svg className="w-4 h-4 text-universal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
@@ -133,7 +133,7 @@ export default function FAQs() {
                 onClick={() => scroll("right")}
                 className="w-8 h-8 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center mr-0 active:scale-90 transition-transform"
               >
-                <svg className="w-4 h-4 text-universal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7" />
                 </svg>
               </button>
