@@ -26,7 +26,7 @@ export default function Footer({ onEnquire }) {
   ];
 
   return (
-    <footer className="w-full bg-[#1A1A1A] pt-10 md:pt-16 pb-10 xl:px-12 px-6">
+    <footer className="w-full bg-[#1A1A1A] md:bg-white pt-10 md:pt-16 pb-10 xl:px-12 px-6">
       <div className="max-w-[85rem] mx-auto">
         
         {/* Top Section */}
@@ -34,12 +34,12 @@ export default function Footer({ onEnquire }) {
           {/* Logo and Socials */}
           <div className="flex flex-col items-start">
             <div className="mb-8">
-               <h1 className="text-white text-3xl font-bold font-circular">accredian</h1>
-               <p className="text-gray-400 text-xs tracking-[0.2em] font-circular mt-1 uppercase">credentials that matter</p>
+               <h1 className="text-white md:text-universal text-3xl font-bold font-circular">accredian</h1>
+               <p className="text-gray-400 md:text-gray-500 text-xs tracking-[0.2em] font-circular mt-1 uppercase">credentials that matter</p>
             </div>
             <div className="flex space-x-6">
               {socialIcons.map((social) => (
-                <Link key={social.name} href="#" className="text-white hover:text-universal transition-colors">
+                <Link key={social.name} href="#" className="text-white md:text-gray-800 hover:text-universal transition-colors">
                   {social.svg}
                 </Link>
               ))}
@@ -54,21 +54,21 @@ export default function Footer({ onEnquire }) {
             >
               Enquire Now
             </button>
-            <p className="text-gray-300 text-xs mt-3 font-circular font-medium tracking-wide">Speak with our Advisor</p>
+            <p className="text-gray-300 md:text-gray-600 text-xs mt-3 font-circular font-medium tracking-wide">Speak with our Advisor</p>
           </div>
         </div>
 
-        <hr className="border-gray-800 mb-12" />
+        <hr className="border-gray-800 md:border-gray-200 mb-12" />
 
         {/* Middle Section: Links and Contact */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-32 mb-10 text-left">
           {/* Company Links */}
           <div className="flex flex-col items-start">
-            <h3 className="text-lg font-bold text-white mb-6 font-circular tracking-tight">Accredian</h3>
+            <h3 className="text-lg font-bold text-white md:text-gray-900 mb-6 font-circular tracking-tight">Accredian</h3>
             <ul className="space-y-4">
               {['About', 'Blog', 'Why Accredian'].map((item) => (
                 <li key={item}>
-                  <Link href="#" className="text-gray-300 hover:text-white transition-colors text-sm font-circular font-medium">
+                  <Link href="#" className="text-gray-300 md:text-gray-700 hover:text-universal transition-colors text-sm font-circular font-medium">
                     {item}
                   </Link>
                 </li>
@@ -78,12 +78,12 @@ export default function Footer({ onEnquire }) {
 
           {/* Contact Details */}
           <div className="flex flex-col items-start">
-            <h3 className="text-lg font-bold text-white mb-6 font-circular tracking-tight">Contact Us</h3>
+            <h3 className="text-lg font-bold text-white md:text-gray-900 mb-6 font-circular tracking-tight">Contact Us</h3>
             <div className="space-y-4">
-              <p className="text-sm text-gray-300 font-circular leading-relaxed">
-                Email us: <Link href="mailto:enterprise@accredian.com" className="text-[#1b72e8] hover:underline font-bold">enterprise@accredian.com</Link>
+              <p className="text-sm text-gray-300 md:text-gray-700 font-circular leading-relaxed">
+                Email us: <Link href="mailto:enterprise@accredian.com" className="text-universal hover:underline font-bold">enterprise@accredian.com</Link>
               </p>
-              <p className="text-sm text-gray-300 leading-7 font-circular">
+              <p className="text-sm text-gray-300 md:text-gray-700 leading-7 font-circular">
                 Office Address: 4th Floor, 250, Phase IV, Udyog Vihar, Sector 18, <br className="hidden md:block" />
                 Gurugram, Haryana
               </p>
@@ -91,11 +91,11 @@ export default function Footer({ onEnquire }) {
           </div>
         </div>
 
-        <hr className="border-gray-800 mb-10" />
+        <hr className="border-gray-800 md:border-gray-200 mb-10" />
 
         {/* Bottom Section: Copyright */}
         <div className="text-left md:text-center">
-          <p className="text-gray-400 text-[13px] font-circular font-medium tracking-wide">
+          <p className="text-gray-400 md:text-gray-500 text-[13px] font-circular font-medium tracking-wide">
             © 2026 Accredian A Brand of FullStack Education Pvt Ltd. All Rights Reserved
           </p>
         </div>

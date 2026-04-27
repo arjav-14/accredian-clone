@@ -26,7 +26,7 @@ export default function Home() {
     <div className="w-full overflow-hidden">
       <Navbar onEnquire={openModal} />
       
-      <div className="flex justify-center items-start">
+      <div id="home" className="flex justify-center items-start">
         <div className="max-w-[85rem] w-full">
           <Hero onEnquire={openModal} />
         </div>

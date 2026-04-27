@@ -20,31 +20,31 @@ export default function Clients() {
       </div>
       <div className="relative w-full overflow-hidden mt-6">
         <div id="clients" className="absolute -top-[100px] left-0"></div>
-        
+
         {/* Desktop Grid (Hidden on Mobile) */}
         <div className="hidden sm:flex justify-center items-center w-full">
           <ul className="grid grid-cols-3 md:grid-cols-6 xl:grid-cols-6 gap-6 md:gap-8 xl:gap-12 items-center">
             {clients.map((url, idx) => (
               <li key={`client-desktop-${idx}`} className="flex justify-center items-center p-4">
-                <img 
-                  src={url} 
-                  alt="client" 
+                <img
+                  src={url}
+                  alt="client"
                   className="object-contain w-24 h-auto"
                 />
               </li>
             ))}
           </ul>
         </div>
-        
-          <div className="block sm:hidden relative w-full overflow-hidden py-4">
-            <div className="flex whitespace-nowrap animate-marquee">
-              {[...clients, ...clients].map((url, idx) => (
-                <div key={`client-mobile-${idx}`} className="flex justify-center items-center px-8 min-w-[140px]">
-                  <img src={url} alt="client" className="w-16 h-10 object-contain" />
-                </div>
-              ))}
-            </div>
+
+        <div className="block sm:hidden relative w-full overflow-hidden py-6">
+          <div className="flex whitespace-nowrap animate-marquee">
+            {[...clients, ...clients, ...clients].map((url, idx) => (
+              <div key={`client-mobile-${idx}`} className="flex justify-center items-center px-10 min-w-[160px]">
+                <img src={url} alt="client" className="w-24 h-12 object-contain" />
+              </div>
+            ))}
           </div>
+        </div>
       </div>
     </div>
   );

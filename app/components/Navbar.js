@@ -21,7 +21,7 @@ export default function Navbar({ onEnquire }) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100; // offset for navbar
-      
+
       for (const link of navLinks) {
         const element = document.getElementById(link.id);
         if (element) {
@@ -40,21 +40,20 @@ export default function Navbar({ onEnquire }) {
   return (
     <nav className="fixed top-0 w-full z-50 bg-white shadow-md py-6 px-6 md:px-14 ">
       <div className="max-w-[85rem] mx-auto flex justify-between items-center">
-        <img 
-          src="https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/logo.webp" 
-          alt="logo" 
+        <img
+          src="https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/logo.webp"
+          alt="logo"
           className="w-[124px] h-[32px]"
         />
-        
+
         <ul className="hidden md:flex justify-end items-center flex-1 space-x-6 lg:space-x-8">
           {navLinks.map((link) => (
-            <li 
-              key={`nav-desktop-${link.id}`} 
-              className={`text-[16px] font-circular font-normal cursor-pointer transition-all duration-300 ${
-                activeSection === link.id 
-                  ? "text-universal font-semibold border-b-[3px] border-universal" 
-                  : "text-black hover:text-universal"
-              }`}
+            <li
+              key={`nav-desktop-${link.id}`}
+              className={`text-[16px] font-circular font-normal cursor-pointer transition-all duration-300 ${activeSection === link.id
+                ? "text-universal font-semibold border-b-[3px] border-universal"
+                : "text-black hover:text-universal"
+                }`}
             >
               <Link href={link.href} onClick={() => setActiveSection(link.id)}>
                 {link.name}
@@ -64,14 +63,14 @@ export default function Navbar({ onEnquire }) {
         </ul>
 
         <div className="md:hidden flex items-center">
-          <svg 
+          <svg
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            stroke="currentColor" 
-            fill="none" 
-            strokeWidth="2" 
-            viewBox="0 0 24 24" 
-            aria-hidden="true" 
-            className="w-8 h-8 text-black cursor-pointer" 
+            stroke="currentColor"
+            fill="none"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            className="w-8 h-8 text-black cursor-pointer"
           >
             {isMobileMenuOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -79,16 +78,16 @@ export default function Navbar({ onEnquire }) {
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
             )}
           </svg>
-          
+
           <div className={`${isMobileMenuOpen ? "flex" : "hidden"} fixed top-[88px] right-5 bg-white shadow-lg p-6 rounded-xl`}>
             <ul className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <li key={`nav-mobile-${link.id}`} className="text-[16px] font-circular text-black cursor-pointer">
-                  <Link 
+                  <Link
                     href={link.href}
                     onClick={() => {
-                       setIsMobileMenuOpen(false);
-                       setActiveSection(link.id);
+                      setIsMobileMenuOpen(false);
+                      setActiveSection(link.id);
                     }}
                     className={`${activeSection === link.id ? "text-universal font-semibold border-b-[2px] border-universal" : "text-black"}`}
                   >
@@ -97,7 +96,7 @@ export default function Navbar({ onEnquire }) {
                 </li>
               ))}
               <li className="pt-2">
-                <button 
+                <button
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     onEnquire();

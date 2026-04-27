@@ -49,14 +49,14 @@ export default function FAQs() {
   ];
 
   return (
-    <div className="faqs w-full mt-20 sm:mt-32 flex flex-col items-center px-4 max-w-6xl mx-auto">
+    <div id="faqs" className="faqs w-full mt-20 sm:mt-32 flex flex-col items-center px-4 max-w-6xl mx-auto relative">
       <div className="text-left w-full mb-16">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight font-circular">
           Frequently Asked <span className="text-universal">Questions</span>
         </h2>
       </div>
 
-      <div id="faqs" className="absolute -top-[100px] left-0 pointer-events-none"></div>
+
 
       <div className="w-full flex flex-col md:flex-row gap-8 lg:gap-16">
 
