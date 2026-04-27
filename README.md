@@ -1,91 +1,87 @@
-# Accredian Enterprise - Landing Page Clone
+# Accredian Enterprise Page - Partial Clone
 
-This project is a fully responsive landing page clone for **Accredian Enterprise**, built as an internship assignment. It is designed to be a high-converting, modern, and engaging landing page for enterprise training solutions.
+A high-fidelity, fully responsive clone of the Accredian Enterprise landing page built with **Next.js**, **Tailwind CSS**, and **Neon Postgres**.
 
-## 🚀 Tech Stack Used
+## 🚀 Live Links
+- **Vercel Deployment**: [Your Vercel Link Here]
+- **GitHub Repository**: [Your GitHub Repo Link Here]
 
+## 🛠️ Tech Stack
 - **Framework**: Next.js (App Router)
-- **Language**: JavaScript (ES6+)
-- **Styling**: Tailwind CSS v4
-- **Components**: Functional React Components + Hooks (`useState`, `useEffect`)
-- **Backend/API**: Next.js Serverless API Routes (Mock Data)
+- **Styling**: Tailwind CSS
+- **Database**: Neon Postgres (Serverless PostgreSQL)
+- **Deployment**: Vercel
 
-## 📁 Component Structure
+---
 
-The application is structured to decouple reusable UI elements from the main layout.
+## 📖 Table of Contents
+- [Setup Instructions](#setup-instructions)
+- [Approach Taken](#approach-taken)
+- [AI Usage Explanation](#ai-usage-explanation)
+- [Future Improvements](#future-improvements)
 
-```text
-/app
-├── /components
-│   ├── Navbar.js         // Responsive top navigation with mobile menu
-│   ├── Hero.js           // First visual impression, value proposition & primary CTA
-│   ├── Programs.js       // Dynamic grid loaded from the API
-│   ├── WhyAccredian.js   // Icon-based feature grid detailing the platform's value
-│   ├── Testimonials.js   // Social proof section with quotes and avatars
-│   ├── CTASection.js     // Final 'Get Started' push 
-│   ├── LeadForm.js       // Lead capture form integrated inside the CTA section
-│   └── Footer.js         // Company links, contact info, and social icons
-├── /api
-│   ├── /programs/route.js // GET: Returns mock array of programs
-│   └── /leads/route.js    // POST: In-memory store for captured lead form submissions
-├── page.js               // Parent assembly file importing and stacking all components
-├── layout.js             // Global HTML/Body layout with Inter font injection
-└── globals.css           // Tailwind root configuration and brand color variables
-```
+---
 
 ## ⚙️ Setup Instructions
 
-To run this project locally, follow these steps:
+### 1. Prerequisites
+- Node.js (v14 or higher)
+- npm or pnpm
 
-1. **Clone the repository** (if applicable) or navigate to the project directory:
-   ```bash
-   cd accredian-clone
-   ```
+### 2. Local Installation
+```bash
+# Clone the repository
+git clone https://github.com/arjav-14/accredian-clone.git
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+# Navigate to the project folder
+cd accredian-clone
 
-3. **Start the development server**:
-   ```bash
-   npm run dev
-   ```
+# Install dependencies
+npm install
 
-4. **View the application**:
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
+# Run the development server
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-## 🌐 Deployment Instructions (Vercel)
+### 3. Database Configuration
+To make the "Enquiry" form work, create a `.env.local` file at the root:
+```env
+DATABASE_URL='your_neon_postgres_url_here'
+```
 
-This project is production-ready and optimized for Vercel deployment.
+---
 
-1. Push your code to a GitHub/GitLab repository.
-2. Go to [Vercel](https://vercel.com) and log in.
-3. Click "Add New Project" and import your repository.
-4. Leave the default settings (Build Command: `npm run build`, Output Directory: `.next`).
-5. Click **Deploy**. Vercel will automatically detect the Next.js App Router and deploy it seamlessly!
+## 🎯 Approach Taken
 
-## 🤖 AI Usage Section
+The project was built using a **Modular Component Architecture**, ensuring each section of the landing page is independent and reusable.
 
-As per the requirements, AI assistance was utilized in the creation of this project.
+### Key Implementation Details:
+- **Responsive Navigation**: Implemented a sticky navbar with a "Scroll-Spy" logic that highlights the active section as the user scrolls.
+- **Micro-Animations**: Used Tailwind CSS animations for the mobile client marquee and course segmentation carousels to match the premium "Enterprise" feel.
+- **Lead Capture System**: Developed a functional API route (`/api/enquire`) that handles form validation and stores data in a persistent Neon Postgres database.
+- **Performance Optimization**: Structured all images and components for fast loading and optimized for a standalone Vercel output.
 
-**AI assisted with:**
-- **Component planning**: Structuring the division between the main `page.js` and the isolated functional components.
-- **Layout generation**: Creating responsive semantic HTML structure for the grid-based sections (like Programs and Features).
-- **Tailwind styling suggestions**: Constructing the modern design system, glassmorphism overlays, and defining the primary blue brand colors `#1b72e8`.
-- **Mock API structure**: Setting up Next.js app directory API routes (`/api/programs` and `/api/leads`) with error handling and local memory arrays.
+---
 
-**Manual work included:**
-- **Responsive tuning**: Ensuring mobile padding, font sizing, and hamburger menus functioned effectively.
-- **Component reuse structure**: Mapping out how the API data connects properly to `Programs.js` state.
-- **Layout hierarchy decisions**: Sizing the hero sections and deciding to embed the Lead Form directly into a consolidated `CTASection.js` for better conversion flow without leaving the page.
-- **UI refinements**: Iterating on standard colors to perfectly match the provided sample image.
+## 🤖 AI Usage Explanation
 
-## 📈 Future Improvements
+This project was developed through a **Pair-Programming collaboration** with an AI coding assistant. 
 
-While this clone meets the assignment criteria, several enhancements could be made before a real-world release:
+- **Role of AI**: The AI assisted in scaffolding the initial component structures, debugging complex CSS responsiveness (like the mobile marquee), and writing the initial logic for the Next.js API routes.
+- **Role of Developer**: I guided the design aesthetics, dictated the project architecture, provided the specific business logic for the form fields, and managed the deployment and database configuration.
 
-1. **Database Integration**: Replace the in-memory array for leads with a real PostgreSQL database (e.g., Supabase or Prisma).
-2. **Form Validation Library**: Integrate `React Hook Form` and `Zod` to implement more robust client-side validation and better error state handling in the Lead Form.
-3. **Animations**: Incorporate `Framer Motion` to add scroll-triggered entrance animations for the program cards and features.
-4. **Dark Mode**: While a light enterprise theme is currently implemented, a toggle for a comprehensive dark mode would make the dashboard more modern.
+---
+
+## ✨ Future Improvements
+
+Given more time, I would implement the following:
+1. **Form Validation**: Integrate `React Hook Form` and `Zod` for more robust client-side validation.
+2. **Dashboard**: Create a password-protected administrative dashboard to view and manage leads stored in the database.
+3. **Advanced Animations**: Use `Framer Motion` for more complex section-entry animations and smooth modal transitions.
+4. **Email Integration**: Connect the API to a service like `Resend` to send instant email notifications whenever a new lead enquired.
+
+---
+
+### 📝 Author
+**Arjav** - Full Stack Developer
