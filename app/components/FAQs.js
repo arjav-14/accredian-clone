@@ -1,104 +1,123 @@
 "use client";
 import { useState } from "react";
 
-export default function FAQs({ onEnquire }) {
-  const [activeTab, setActiveTab] = useState("course");
+export default function FAQs() {
+  const [activeTab, setActiveTab] = useState("Course");
   const [openIndex, setOpenIndex] = useState(0);
 
-  const tabs = [
-    { id: "course", label: "About the Course" },
-    { id: "delivery", label: "About the Delivery" },
-    { id: "miscellaneous", label: "Miscellaneous" },
-  ];
-
-  const faqs = {
-    course: [
-      { q: "What types of corporate training programs does Accredian offer?", a: "Accredian provides industry-specific, customizable training programs tailored to meet your organization's unique needs, covering domains like leadership, tech, data, and fintech." },
-      { q: "What domain specializations are available?", a: "We offer expertise in various domains, including Leadership Development, Tech & Data, Fintech, Digital Business, Product Innovation, Operations Management, and Generative AI." },
+  const faqData = {
+    Course: [
+      {
+        question: "What types of corporate training programs does Accredian offer?",
+        answer: "Accredian provides industry-specific, customizable training programs tailored to meet your organization's unique needs, covering domains like leadership, tech, data, and fintech."
+      },
+      {
+        question: "What domain specializations are available?",
+        answer: "We offer expertise in various domains, including Leadership Development, Tech & Data, Fintech, Digital Business, Product Innovation, Operations Management, and Generative AI."
+      }
     ],
-    delivery: [
-      { q: "How are the training sessions delivered?", a: "Sessions can be delivered online (live instructor-led), in-person at your office, or via a hybrid model depending on your team's requirements." },
-      { q: "Can the schedule be customized?", a: "Yes, we work closely with your L&D teams to create flexible schedules that minimize disruption to regular work hours." },
+    Delivery: [
+      {
+        question: "Can the courses be customized for specific industries or teams?",
+        answer: "Absolutely! Our programs are fully customizable, including content, format, timing, and industry-specific focus, to align with your organization’s goals."
+      },
+      {
+        question: "Who are the instructors for these programs?",
+        answer: "Our courses are delivered by industry leaders, experienced mentors, and domain experts with real-world insights."
+      },
+      {
+        question: "What formats are the programs delivered in?",
+        answer: "Programs can be delivered in various formats, including online, offline, hybrid, and on-demand, based on your team's preferences and requirements."
+      }
     ],
-    miscellaneous: [
-      { q: "Do participants receive certifications?", a: "Yes, all participants receive industry-recognized certifications from Accredian upon successful completion of the program." },
-      { q: "Is there post-training support provided?", a: "We provide extended access to learning materials and dedicated support channels for up to 6 months post-program." },
-    ],
+    Miscellaneous: [
+      {
+        question: "What is the ideal team size for corporate training?",
+        answer: "Our programs are flexible and can cater to teams of any size, from small groups to large organizational cohorts."
+      },
+      {
+        question: "How do we get started with Accredian?",
+        answer: "Get started with Accredian by contacting us or requesting a quote on our website. Our team will guide you through the process — from skill gap analysis to a custom program tailored to your needs."
+      }
+    ]
   };
 
-  const currentFaqs = faqs[activeTab];
+  const tabs = [
+    { name: "About the Course", id: "Course" },
+    { name: "About the Delivery", id: "Delivery" },
+    { name: "Miscellaneous", id: "Miscellaneous" }
+  ];
 
   return (
-    <div id="faqsSection" className="w-full flex justify-center mt-16 sm:mt-16 md:py-12 xl:px-12 px-4">
-      <div className="w-full max-w-[85rem]">
-        <div className="w-full">
-          <h2 className="text-2xl mx-1 md:text-4xl font-bold text-gray-900 leading-tight">
-            Frequently Asked <span className="text-universal">Questions</span>
-          </h2>
-        </div>
-        
-        <div className="relative w-full">
-          <div id="faqs" className="absolute -top-[100px] left-0"></div>
-          <div className="flex gap-4 mt-8 md:mt-12 md:flex-row flex-col">
-            {/* Tabs */}
-            <div className="w-full md:flex-[0.3] relative">
-              <div className="no-scrollbar md:max-w-sm md:px-4 py-2 flex flex-row md:flex-col items-center gap-4 md:gap-6 max-w-[90vw] overflow-x-auto">
-                {tabs.map((tab) => (
-                  <div 
-                    key={tab.id}
-                    onClick={() => { setActiveTab(tab.id); setOpenIndex(0); }}
-                    className={`w-full max-w-[280px] rounded-md border px-4 py-4 text-center cursor-pointer transition-all ${
-                      activeTab === tab.id 
-                        ? "drop-shadow-lg md:drop-shadow-xl bg-white border-transparent" 
-                        : "border-neutral-300 bg-transparent"
-                    }`}
-                  >
-                    <h1 className={`text-sm whitespace-nowrap max-md:text-nowrap lg:text-lg font-semibold ${activeTab === tab.id ? "text-universal" : "text-neutral-500"}`}>
-                      {tab.label}
-                    </h1>
-                  </div>
-                ))}
-              </div>
-            </div>
+    <div className="faqs w-full mt-20 sm:mt-32 flex flex-col items-center px-4 max-w-6xl mx-auto">
+      <div className="text-left w-full mb-16">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight font-circular">
+          Frequently Asked <span className="text-universal">Questions</span>
+        </h2>
+      </div>
 
-            {/* Accordion */}
-            <div className="w-full md:flex-[0.7] md:px-4 flex flex-col">
-              <div className="space-y-4">
-                {currentFaqs.map((faq, idx) => (
-                  <div key={idx} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                    <button
-                      className="w-full text-left py-4 px-6 flex justify-between items-center transition-colors hover:bg-gray-50"
-                      onClick={() => setOpenIndex(openIndex === idx ? -1 : idx)}
-                    >
-                      <h1 className={`text-lg font-semibold transition-colors ${openIndex === idx ? "text-universal" : "text-gray-900"}`}>
-                        {faq.q}
-                      </h1>
-                      <svg 
-                        className={`w-6 h-6 transition-transform duration-300 ${openIndex === idx ? "rotate-x-180" : ""}`} 
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    
-                    <div className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === idx ? "max-h-96" : "max-h-0"}`}>
-                      <div className="px-6 pb-6 text-gray-600">
-                        {faq.a}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="flex justify-center mt-6">
-                <button 
-                  onClick={onEnquire}
-                  className="px-6 py-3 bg-universal text-white font-semibold rounded-lg shadow-md transition duration-300 hover:bg-blue-700"
+      <div id="faqs" className="absolute -top-[100px] left-0 pointer-events-none"></div>
+
+      <div className="w-full flex flex-col md:flex-row gap-8 lg:gap-16">
+
+        {/* Left Sidebar for Tabs */}
+        <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible w-full md:w-1/3 gap-4 pb-4 md:pb-0 scrollbar-hide">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => {
+                setActiveTab(tab.id);
+                setOpenIndex(0);
+              }}
+              className={`whitespace-nowrap px-8 py-5 rounded-xl border text-sm font-bold transition-all duration-300 font-circular text-center w-full min-w-[200px] md:min-w-0 ${activeTab === tab.id
+                ? "bg-white text-universal border-gray-100 shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] scale-[1.02] border-none"
+                : "bg-white text-gray-500 border-gray-200 hover:border-universal hover:text-universal"
+                }`}
+            >
+              {tab.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Right Content for Questions */}
+        <div className="w-full md:w-2/3 flex flex-col">
+          <div className="space-y-4">
+            {faqData[activeTab].map((item, idx) => (
+              <div
+                key={idx}
+                className="border-b border-gray-100 last:border-b-0 pb-4"
+              >
+                <button
+                  onClick={() => setOpenIndex(openIndex === idx ? -1 : idx)}
+                  className="w-full flex justify-between items-start text-left py-4 group focus:outline-none"
                 >
-                  Enquire Now
+                  <span className={`text-[15px] sm:text-[17px] font-bold pr-8 transition-colors font-circular leading-snug ${openIndex === idx ? "text-universal" : "text-gray-800"
+                    }`}>
+                    {item.question}
+                  </span>
+                  <span className={`mt-1 transform transition-all duration-300 ${openIndex === idx ? "rotate-180 text-universal" : "text-gray-400 opacity-60"}`}>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
                 </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === idx ? "max-h-96 pb-4" : "max-h-0"
+                    }`}
+                >
+                  <p className="text-gray-600 text-sm sm:text-[15px] leading-relaxed font-circular font-medium">
+                    {item.answer}
+                  </p>
+                </div>
               </div>
-            </div>
+            ))}
+          </div>
+
+          {/* Enquire Button Below Questions */}
+          <div className="mt-12 flex justify-center w-full">
+            <button className="bg-universal text-white font-bold py-3.5 px-12 rounded-xl shadow-lg hover:bg-blue-700 transition-all active:scale-[0.98] font-circular text-sm">
+              Enquire Now
+            </button>
           </div>
         </div>
       </div>

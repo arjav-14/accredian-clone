@@ -1,10 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Testimonials() {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef(null);
 
   const testimonials = [
+    {
+      company: "Reliance",
+      logo: "https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/rel.png",
+      text: "\"Choosing Accredian for the learning & development of our employees was a beneficial decision. The value derived from the course is immense & their support team is always there to help our employees.\""
+    },
     {
       company: "ADP",
       logo: "https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/adp.svg",
@@ -14,43 +20,62 @@ export default function Testimonials() {
       company: "Bayer",
       logo: "https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/bayer.svg",
       text: "\"Accredian's commitment to excellence is unmatched. They consistently go the extra mile to ensure our needs are met and exceeded, providing reliable support and high-quality service every step of the way.\""
-    },
-    {
-      company: "Reliance",
-      logo: "https://storage.googleapis.com/accredian-assets/Frontend_Assests/Images/Accredian-react-site-images/other/rel.png",
-      text: "\"Choosing Accredian for the learning & development of our employees was a beneficial decision. The value derived from the course is immense & their support team is always there to help our employees.\""
     }
   ];
 
-  // Grouping logic: Page 0 has first 2, Page 1 has the 3rd
-  const visibleTestimonials = currentPage === 0
-    ? testimonials.slice(0, 2)
-    : testimonials.slice(2, 3);
+  // Handle scroll to update dots
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const index = Math.round(scrollLeft / clientWidth);
+      setActiveIndex(index);
+    }
+  };
+
+  const scrollTo = (index) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        left: index * scrollRef.current.clientWidth,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
-    <div className="testimonials w-full mt-16 sm:mt-20 flex flex-col items-center">
-      <div className="text-center mb-10 mx-2">
-        <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 leading-tight">
+    <div className="testimonials w-full mt-16 sm:mt-24 flex flex-col items-center">
+      <div className="text-center mb-10 mx-4">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight font-circular">
           Testimonials from <span className="text-universal">Our Partners</span>
         </h2>
-        <p className="text-sm sm:text-lg text-gray-700 mt-3">
+        <p className="text-sm sm:text-lg text-gray-700 mt-3 font-circular">
           What <span className="text-universal">Our Clients</span> Are Saying
         </p>
       </div>
 
-      <div className="relative w-full px-4 min-h-[300px]">
+      <div className="relative w-full max-w-6xl mx-auto px-4">
         <div id="testimonials" className="absolute -top-[100px] left-0"></div>
-        <div className="flex flex-wrap md:flex-nowrap justify-center gap-6 max-w-6xl mx-auto transition-all duration-500">
-          {visibleTestimonials.map((test, idx) => (
+        
+        {/* Carousel Container */}
+        <div 
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 pb-4"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {testimonials.map((test, idx) => (
             <div
-              key={`testi-${test.company}-${idx}`}
-              className="bg-white border border-gray-300 rounded-xl p-6 flex flex-row items-center w-full md:w-1/2 lg:w-1/2 min-h-[250px] shadow-sm animate-in fade-in slide-in-from-right-4 duration-500"
+              key={`testi-${idx}`}
+              className="min-w-full md:min-w-[calc(50%-12px)] snap-center"
             >
-              <div className="w-full flex flex-col justify-start items-start pl-6 h-full">
-                <div className="h-16 mb-4 flex items-center gap-4">
-                  <img src={test.logo} alt={test.company} className="h-14 w-14 object-contain" />
+              <div className="bg-white border border-gray-100 rounded-2xl p-8 flex flex-col items-center text-center shadow-lg hover:shadow-xl transition-shadow duration-300 h-full min-h-[320px] justify-center mx-1">
+                <div className="mb-6 flex justify-center items-center h-16 w-full">
+                  <img 
+                    src={test.logo} 
+                    alt={test.company} 
+                    className="max-h-full max-w-[120px] object-contain" 
+                  />
                 </div>
-                <p className="text-neutral-600 text-base font-light">
+                <p className="text-gray-600 text-[15px] sm:text-base leading-relaxed font-circular font-medium italic">
                   {test.text}
                 </p>
               </div>
@@ -58,18 +83,20 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center items-center space-x-3 mt-10">
-          <button
-            onClick={() => setCurrentPage(0)}
-            className={`w-2 h-2 rounded-full transition-all ${currentPage === 0 ? "bg-universal scale-125" : "bg-gray-300 hover:bg-gray-400"}`}
-            aria-label="Page 1"
-          ></button>
-          <button
-            onClick={() => setCurrentPage(1)}
-            className={`w-2 h-2 rounded-full transition-all ${currentPage === 1 ? "bg-universal scale-125" : "bg-gray-300 hover:bg-gray-400"}`}
-            aria-label="Page 2"
-          ></button>
+        {/* Improved Pagination Dots */}
+        <div className="flex justify-center items-center space-x-2 mt-8">
+          {testimonials.map((_, idx) => (
+            <button
+              key={`dot-${idx}`}
+              onClick={() => scrollTo(idx)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                activeIndex === idx 
+                  ? "w-6 bg-universal" 
+                  : "w-2 bg-gray-300 hover:bg-gray-400"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            ></button>
+          ))}
         </div>
       </div>
     </div>
