@@ -3,8 +3,8 @@
 A high-fidelity, fully responsive clone of the Accredian Enterprise landing page built with **Next.js**, **Tailwind CSS**, and **Neon Postgres**.
 
 ## 🚀 Live Links
-- **Vercel Deployment**: [Your Vercel Link Here]
-- **GitHub Repository**: [Your GitHub Repo Link Here]
+- **Vercel Deployment**: [https://accredian-clone-five-beta.vercel.app](https://accredian-clone-five-beta.vercel.app)
+- **GitHub Repository**: [https://github.com/arjav-14/accredian-clone](https://github.com/arjav-14/accredian-clone)
 
 ## 🛠️ Tech Stack
 - **Framework**: Next.js (App Router)
@@ -66,10 +66,10 @@ The project was built using a **Modular Component Architecture**, ensuring each 
 
 ## 🤖 AI Usage Explanation
 
-This project was developed through a **Pair-Programming collaboration** with an AI coding assistant. 
+This project was developed through a pair-programming collaboration with an AI coding assistant. 
 
-- **Role of AI**: The AI assisted in scaffolding the initial component structures, debugging complex CSS responsiveness (like the mobile marquee), and writing the initial logic for the Next.js API routes.
-- **Role of Developer**: I guided the design aesthetics, dictated the project architecture, provided the specific business logic for the form fields, and managed the deployment and database configuration.
+- **Role of AI**: The AI was primarily used for **CSS-related tasks**, including Tailwind styling, ensuring mobile responsiveness (such as the rotating client marquee and carousel), and optimizing the visual layout for an enterprise-grade feel.
+- **Role of Developer**: I was responsible for the core project architecture, implementing the API endpoints, managing the Neon database integration, and final deployment.
 
 ---
 
